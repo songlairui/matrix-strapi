@@ -1,0 +1,17 @@
+{
+  "defaultConnection": "default",
+  "connections": {
+    "default": {
+      "connector": "strapi-hook-bookshelf",
+      "settings": {
+        "client": "postgres",
+        "database": "strapi_clipboard",
+        "host": "db",
+        "port": "5432",
+        "username": "postgres",
+        "password": "rvdata"
+      },
+      "options": {}
+    }
+  }
+}
