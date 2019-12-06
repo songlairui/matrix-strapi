@@ -1,11 +1,11 @@
+--- #-------------------------------------------------------------------------------------------------------------
+
 #-------------------------------------------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See https://go.microsoft.com/fwlink/?linkid=2090316 for license information.
-#-------------------------------------------------------------------------------------------------------------
-
-version: '3'
+version: "3"
 services:
-  docker-in-docker:
+  docker-strapi-matrix:
     # Uncomment the next line to use a non-root user. On Linux, this will prevent
     # new files getting created as root, but you may need to update the USER_UID
     # and USER_GID in .devcontainer/Dockerfile to match your user if not 1000.
@@ -13,18 +13,18 @@ services:
 
     image: songlairui/node-dev:taobao
 
-    # build: 
-      # context: .
-      # dockerfile: Dockerfile
+    # build:
+    # context: .
+    # dockerfile: Dockerfile
 
     volumes:
       # Update this to wherever you want VS Code to mount the folder of your project
       - ..:/workspace
-      - /Users/songlairui/docker-usage/cache_g_npm_taobao:/usr/local/lib/node_modules
-      - /Users/songlairui/docker-usage/cache_g_yarn_taobao:/usr/local/share/.cache/yarn
+      - npm_cache_taobao:/usr/local/lib/node_modules
+      - yarn_cache_taobao:/usr/local/share/.cache/yarn
 
       # Forwards the local Docker socket to the container.
-      - /var/run/docker.sock:/var/run/docker.sock 
+      - /var/run/docker.sock:/var/run/docker.sock
 
     # Uncomment the next four lines if you will use a ptrace-based debuggers like C++, Go, and Rust.
     # cap_add:
@@ -33,9 +33,15 @@ services:
     #   - seccomp:unconfined
 
     # Overrides default command so things don't shut down after the process ends.
-    command: sleep infinity 
-    
+    command: /bin/sh -c "while sleep 1000; do :; done"
+
 networks:
   default:
     external:
       name: lary
+
+volumes:
+  npm_cache_taobao:
+    external: true
+  yarn_cache_taobao:
+    external: true
