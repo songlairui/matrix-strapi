@@ -11,9 +11,11 @@ services:
     # and USER_GID in .devcontainer/Dockerfile to match your user if not 1000.
     # user: vscode
 
-    build: 
-      context: .
-      dockerfile: Dockerfile
+    image: songlairui/node-dev:taobao
+
+    # build: 
+      # context: .
+      # dockerfile: Dockerfile
 
     volumes:
       # Update this to wherever you want VS Code to mount the folder of your project
@@ -33,3 +35,7 @@ services:
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity 
     
+networks:
+  default:
+    external:
+      name: lary
