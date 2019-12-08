@@ -1,0 +1,21 @@
+{
+  "connection": "default",
+  "collectionName": "clipboards",
+  "info": {
+    "name": "clipboard",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "raw": {
+      "type": "string"
+    },
+    "remark": {
+      "type": "text"
+    }
+  }
+}

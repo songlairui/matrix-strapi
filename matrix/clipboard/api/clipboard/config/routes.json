@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/clipboards",
+      "handler": "Clipboard.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/clipboards/count",
+      "handler": "Clipboard.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/clipboards/:id",
+      "handler": "Clipboard.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/clipboards",
+      "handler": "Clipboard.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/clipboards/:id",
+      "handler": "Clipboard.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/clipboards/:id",
+      "handler": "Clipboard.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
