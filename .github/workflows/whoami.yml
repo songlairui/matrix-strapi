@@ -8,21 +8,22 @@ jobs:
   whoami:
     runs-on: ubuntu-latest
     steps:
-      - name: Install SSH Key
-        uses: shimataro/ssh-key-action@v1.3.0
+      - name: Run SSH command
+        uses: garygrossgarten/github-action-ssh@v0.3.0
         with:
-          private-key: ${{ secrets.MBP_KEY }}
-          public-key: ${{ secrets.MBP_PUB }}
-          known-hosts: ${{ secrets.ESC_KNOWN_AS }}
-      - name: webfactory/ssh-agent
-        uses: webfactory/ssh-agent@v0.1.1
-        with:
-          # Private SSH key to register in the SSH agent
-          ssh-private-key: ${{ secrets.MBP_KEY }}
-          # Where to place the SSH Agent auth socket
-          ssh-auth-sock: /tmp/ssh-auth.sock
-      - name: SSH Commands
-        run: |
-          mkdir -p ~/.ssh
-          cat ~/.ssh/id_rsa.pub
-          ssh ${{ secrets.ECS_USER }}@39.98.210.208 whoami
+          # Command to execute on the remote server.
+          command: whoami
+          # Hostname or IP address of the server.
+          host: ${{ secret.ECS_HOST }}
+          # Username for authentication.
+          username: ${{ secret.ECS_USER }}
+          # Port number of the server.
+          port: ${{ secret.ECS_PORT }}
+          # File Location or string that contains a private key for either key-based or hostbased user authentication (OpenSSH format)
+          # privateKey: ${{ secrets.MBP_KEY }}
+          # Password for password-based user authentication.
+          password: ${{ secrets.ECS_PWD }}
+          # For an encrypted private key, this is the passphrase used to decrypt it.
+          # passphrase: # optional
+          # Try keyboard-interactive user authentication if primary user authentication method fails.
+          # tryKeyboard: # optional
