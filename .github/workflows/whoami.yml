@@ -13,8 +13,9 @@ jobs:
         with:
           private-key: ${{ secrets.MBP_KEY }}
           public-key: ${{ secrets.MBP_PUB }}
+          known-hosts: ${{ secrets.ESC_KNOWN_AS }}
       - name: SSH Commands
         run: |
           mkdir -p ~/.ssh
           cat ~/.ssh/id_rsa.pub
-          ssh larry@39.98.210.208 whoami
+          ssh ${{ secrets.ECS_USER }}@39.98.210.208 whoami
