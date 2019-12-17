@@ -3,6 +3,12 @@ name: Whoami
 on:
   issue_comment:
     types: [created, deleted]
+    
+env:
+  MBP_KEY: ${{ secrets.MBP_KEY }}
+  MBP_PUB: ${{ secrets.MBP_PUB }}
+  ECS_USER: ${{ secrets.ECS_USER }}
+  ECS_HOST: ${{ secrets.ECS_HOST }}
 
 jobs:
   whoami:
@@ -11,7 +17,7 @@ jobs:
       - name: SSH Commands
         run: |
           mkdir -p ~/.ssh
-          echo ${{ secrets.MBP_KEY }} > ~/.ssh/id_rsa
-          echo ${{ secrets.MBP_PUB }} > ~/.ssh/id_rsa.pub
+          echo $MBP_KEY > ~/.ssh/id_rsa
+          echo ${secrets.MBP_PUB} > ~/.ssh/id_rsa.pub
           ls -la ~
-          ssh ${{ secrets.ECS_USER }}@${{ secrets.ECS_HOST }} whoami
+          ssh -l $ECS_USER $ECS_HOST whoami
