@@ -1,0 +1,22 @@
+name: Docker Image CI
+
+on:
+  push:
+    paths:
+    - 'matrix/blog/package.json'
+    - 'matrix/blog/Dockerfile'
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build the Docker image # 步骤名字
+      run: |
+        docker login --username=${{ secrets.ALI_DOCKER_USER }} registry.cn-shenzhen.aliyuncs.com --password=${{ secrets.ALI_DOCKER_PWD }}
+        docker build ./matrix/blog --file ./matrix/blog/Dockerfile -t blog:latest #执行构建
+        docker tag blog registry.cn-shenzhen.aliyuncs.com/rv/strapi_matrix:blog
+        docker push registry.cn-shenzhen.aliyuncs.com/rv/strapi_matrix:blog # 推送
