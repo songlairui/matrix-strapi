@@ -22,5 +22,6 @@ jobs:
           echo $MBP_KEY > ~/.ssh/id_rsa
           echo ${MBP_PUB} > ~/.ssh/id_rsa.pub
           cat ~/.ssh/id_rsa.pub
-          ls -la ~
+          ls -la ~/.ssh
+          echo $ECS_USER $ECS_HOST
           ssh -l $ECS_USER $ECS_HOST whoami
