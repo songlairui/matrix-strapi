@@ -14,14 +14,13 @@ jobs:
   whoami:
     runs-on: ubuntu-latest
     steps:
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v1.3.0
+        with:
+          private-key: ${{ secrets.MBP_KEY }}
+          public-key: ${{ secrets.MBP_PUB }}
       - name: SSH Commands
         run: |
           mkdir -p ~/.ssh
-          echo $ECS_HOST
-          echo ${ECS_USER}
-          echo $MBP_KEY > ~/.ssh/id_rsa
-          echo ${MBP_PUB} > ~/.ssh/id_rsa.pub
           cat ~/.ssh/id_rsa.pub
-          ls -la ~/.ssh
-          echo $ECS_USER $ECS_HOST
-          ssh -l $ECS_USER $ECS_HOST whoami
+          ssh larry@calli.songlairui.cn:22 whoami
