@@ -3,12 +3,6 @@ name: Whoami
 on:
   issue_comment:
     types: [created, deleted]
-    
-env:
-  MBP_KEY: ${{ secrets.MBP_KEY }}
-  MBP_PUB: ${{ secrets.MBP_PUB }}
-  ECS_USER: ${{ secrets.ECS_USER }}
-  ECS_HOST: ${{ secrets.ECS_HOST }}
 
 jobs:
   whoami:
@@ -23,4 +17,4 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           cat ~/.ssh/id_rsa.pub
-          ssh larry@calli.songlairui.cn:22 whoami
+          ssh larry@39.98.210.208:22 whoami
