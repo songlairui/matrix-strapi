@@ -7,10 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: SSH Commands
-        uses: appleboy/ssh-action@v0.0.2
-        with:
-          host: ${{ secrets.ECS_HOST }}
-          username: ${{ secrets.ECS_USER }}
-          password: ${{ secrets.ECS_PWD }}
-          port: ${{ secrets.ECS_PORT }}
-          script: whoami
+        run: |
+          echo ${{ secrets.ECS_HOST }}
+          echo ${{ secrets.ECS_USER }}
+          echo ${{ secrets.ECS_PWD }}
+          echo ${{ secrets.ECS_PORT }}
+          echo
+          whoami
+          mkdir -p ~/.ssh
+          ls ~/.ssh
