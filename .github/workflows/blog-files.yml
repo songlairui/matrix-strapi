@@ -1,0 +1,32 @@
+name: Blog Sync Without image
+
+on:
+  push:
+    paths:
+      - "!matrix/blog/package.json"
+      - "!matrix/blog/Dockerfile"
+      - "matrix/blog/api/**"
+      - "matrix/blog/config/**"
+      - "matrix/blog/extensions/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Run SSH command
+        uses: garygrossgarten/github-action-ssh@v0.3.0
+        with:
+          host: ${{ secrets.ECS_HOST }}
+          username: ${{ secrets.ECS_USER }}
+          port: ${{ secrets.ECS_PORT }}
+          privateKey: ${{ secrets.MBP_KEY }}
+          # password: ${{ secrets.ECS_PWD }}
+          command: |
+            cd /home/larry/repo-sync/matrix-strapi
+            git pull --force
+            docker pull registry-vpc.cn-zhangjiakou.aliyuncs.com/rv/strapi_matrix:blog
+            cd /home/larry/docker-composers/matrix-strapi
+            docker-compose -f blog.yml yarn build
+            docker-compose -f blog.yml restart

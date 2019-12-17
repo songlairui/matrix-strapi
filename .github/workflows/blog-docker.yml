@@ -18,3 +18,15 @@ jobs:
           docker tag blog registry.cn-zhangjiakou.aliyuncs.com/rv/strapi_matrix:blog
           echo "${{ secrets.ALI_DOCKER_PWD }}" | docker login registry.cn-zhangjiakou.aliyuncs.com --username=${{ secrets.ALI_DOCKER_USER }} --password-stdin
           docker push registry.cn-zhangjiakou.aliyuncs.com/rv/strapi_matrix:blog # 推送
+      - name: Run SSH command
+        uses: garygrossgarten/github-action-ssh@v0.3.0
+        with:
+          host: ${{ secrets.ECS_HOST }}
+          username: ${{ secrets.ECS_USER }}
+          port: ${{ secrets.ECS_PORT }}
+          privateKey: ${{ secrets.MBP_KEY }}
+          # password: ${{ secrets.ECS_PWD }}
+          command: |
+            docker pull registry-vpc.cn-zhangjiakou.aliyuncs.com/rv/strapi_matrix:blog
+            cd /home/larry/docker-composers/matrix-strapi
+            docker-compose -f blog.yml up -d
