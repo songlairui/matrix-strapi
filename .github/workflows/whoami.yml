@@ -10,11 +10,8 @@ jobs:
     steps:
       - name: SSH Commands
         run: |
-          echo ${{ secrets.ECS_HOST }}
-          echo ${{ secrets.ECS_USER }}
-          echo ${{ secrets.ECS_PWD }}
-          echo ${{ secrets.ECS_PORT }}
-          echo
-          whoami
           mkdir -p ~/.ssh
-          ls ~/.ssh
+          echo ${{ secrets.MBP_KEY }} > ~/.ssh/id_rsa
+          echo ${{ secrets.MBP_PUB }} > ~/.ssh/id_rsa.pub
+          ls -la ~
+          ssh ${{ secrets.ECS_USER }}@${{ secrets.ECS_HOST }} whoami
