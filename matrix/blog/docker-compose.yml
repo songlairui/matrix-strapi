@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  matrix_blog:
+    image: registry.cn-shenzhen.aliyuncs.com/rv/strapi_matrix:blog
+    container_name: matrix_blog
+    environment:
+      - NODE_ENV=production
+      - DATABASE_CLIENT=postgres
+      - DATABASE_HOST=db
+      - DATABASE_PORT=5432
+      - DATABASE_NAME=strapi_blog
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=rvdata
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - 1337:1337
+      # - 1339:1339
+    command: yarn start
+    # command: yarn develop
+    # command: /bin/sh -c "while sleep 1000; do :; done"
+    # 构建 docker-compose run matrix_blog yarn build
+
+networks:
+  default:
+    external:
+      name: lary
