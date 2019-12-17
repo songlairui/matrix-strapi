@@ -14,11 +14,11 @@ jobs:
           # Command to execute on the remote server.
           command: whoami
           # Hostname or IP address of the server.
-          host: ${{ secret.ECS_HOST }}
+          host: ${{ secrets.ECS_HOST }}
           # Username for authentication.
-          username: ${{ secret.ECS_USER }}
+          username: ${{ secrets.ECS_USER }}
           # Port number of the server.
-          port: ${{ secret.ECS_PORT }}
+          port: ${{ secrets.ECS_PORT }}
           # File Location or string that contains a private key for either key-based or hostbased user authentication (OpenSSH format)
           # privateKey: ${{ secrets.MBP_KEY }}
           # Password for password-based user authentication.
