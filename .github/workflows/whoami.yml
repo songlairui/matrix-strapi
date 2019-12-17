@@ -17,4 +17,4 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           cat ~/.ssh/id_rsa.pub
-          ssh larry@39.98.210.208:22 whoami
+          ssh larry@39.98.210.208 whoami
