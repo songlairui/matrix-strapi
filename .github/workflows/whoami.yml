@@ -17,6 +17,8 @@ jobs:
       - name: SSH Commands
         run: |
           mkdir -p ~/.ssh
+          echo $ECS_HOST
+          echo ${ECS_USER}
           echo $MBP_KEY > ~/.ssh/id_rsa
           echo ${secrets.MBP_PUB} > ~/.ssh/id_rsa.pub
           ls -la ~
