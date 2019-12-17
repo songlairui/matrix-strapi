@@ -14,6 +14,13 @@ jobs:
           private-key: ${{ secrets.MBP_KEY }}
           public-key: ${{ secrets.MBP_PUB }}
           known-hosts: ${{ secrets.ESC_KNOWN_AS }}
+      - name: webfactory/ssh-agent
+        uses: webfactory/ssh-agent@v0.1.1
+        with:
+          # Private SSH key to register in the SSH agent
+          ssh-private-key: ${{ secrets.MBP_KEY }}
+          # Where to place the SSH Agent auth socket
+          ssh-auth-sock: /tmp/ssh-auth.sock
       - name: SSH Commands
         run: |
           mkdir -p ~/.ssh
