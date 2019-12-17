@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Blog Docker Image
 
 on:
   push:
