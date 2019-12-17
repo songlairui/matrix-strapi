@@ -1,0 +1,16 @@
+name: Whoami
+
+on: [issues]
+
+jobs:
+  whoami:
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH Commands
+        uses: appleboy/ssh-action@v0.0.2
+        with:
+          host: ${{ secrets.ECS_HOST }}
+          username: ${{ secrets.ECS_USER }}
+          password: ${{ secrets.ECS_PWD }}
+          port: ${{ secrets.ECS_PORT }}
+          script: whoami
