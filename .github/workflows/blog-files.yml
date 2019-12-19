@@ -1,4 +1,4 @@
-name: Blog Sync Without image
+name: Blog Sync Without docker
 
 on:
   push:
@@ -28,5 +28,4 @@ jobs:
             git pull --force
             docker pull registry-vpc.cn-zhangjiakou.aliyuncs.com/rv/strapi_matrix:blog
             cd /home/larry/docker-composers/matrix-strapi
-            docker-compose -f blog.yml yarn build
             docker-compose -f blog.yml restart
