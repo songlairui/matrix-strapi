@@ -1,0 +1,39 @@
+{
+  "connection": "default",
+  "collectionName": "sites",
+  "info": {
+    "name": "sites",
+    "description": "site metas\nStatic site, pages\nDynamic Site, \nLinks:\n  currentState\n  domain\n  domain provider\n  pay site\n  pay desc\n  enddate\n  lastPayDate"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "state": {
+      "type": "json"
+    },
+    "domain": {
+      "type": "string"
+    },
+    "domain_provider": {
+      "type": "text"
+    },
+    "pay_site": {
+      "type": "string"
+    },
+    "pay_description": {
+      "type": "richtext"
+    },
+    "last_pay_date": {
+      "type": "date"
+    },
+    "expire_date": {
+      "type": "date"
+    }
+  }
+}
